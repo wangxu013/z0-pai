@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <style>
+    h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.4em;
+    }
+
+    div.container {
+    display: flex;
+    justify-content: center;
+    }
+    div>div.left{
+    width: 125px;
+    float: left;
+
+
+
+    }
+
+    div.item {background-color: rgb(228, 232, 232);
+    float:left;
+    width: 56px;
+    height: 38px;
+    margin: 2px;
+    border-radius: 6px;
+    font-size: medium;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+
+    overflow: hidden;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+    }
+
+    
+    table {
+    border: 1px solid black;
+    border-spacing: 1px;
+    /* border-collapse: collapse; */
+
+    }
+
+    th,
+    td {
+    border: 1px solid grey;
+    width: 60px;
+    height: 42px;
+    padding: 2px;
+    }
+
+    .drag-enter {background-color: rgba(103, 103, 103, 0.3);
+    }
+
+    .th_date {
+      font-size: small;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #e00c08;
+    }
+div.item.color1 {background-color: #fb3135a1;}
+div.item.color2 {background-color: #e1580ea1;}
+div.item.color3 {background-color: #d4ab07a1;}
+div.item.color4 {background-color: #9ccd16a1;}
+div.item.color5 {background-color: #20bf12a1;}
+div.item.color6 {background-color: #12bf94a1;}
+div.item.color7 {background-color: #12a2bfa1;}
+div.item.color8 {background-color: #125dbfa1;}
+div.item.color9 {background-color: #1227e8a1;}
+div.item.color10 {background-color: #8812e8a1;}
+div.item.color11 {background-color: #c112e8a1;}
+div.item.color12 {background-color: #e812dda1;}
+div.item.color13 {background-color: #e60970b0;}
+div.item.color14 {background-color: #800723a1;}
+div.item.color15 {background-color: #120648a1;}
+div.item.color16 {background-color: #175105a1;}
+div.item.color17 {background-color: #58034ba1;}
+div.item.color18 {background-color: #0b20044e;}
+div.item.color19 {background-color: #ddd5616f;}
+div.item.color20 {background-color: #8de0726f;}
+  </style>
+</head>
+
+<body>
+  <h1>workSchedule</h1>
+  <div class="container">
+    <div data-dropif="move" class="left">
+      <button type="button" class="btn btn-primary btn-sm" onclick="gopage1()">员工表</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="gopage2()">班次表</button>
+      <br>
+      FT
+      <div data-dropif="move" class="left">
+        <div data-effect="copy" draggable="true" class="color1 item" data-idnum="2301">1</div>
+        <div data-effect="copy" draggable="true" class="color2 item" data-idnum="2302">2</div>
+        <div data-effect="copy" draggable="true" class="color3 item" data-idnum="2303">3</div>
+        <div data-effect="copy" draggable="true" class="color4 item" data-idnum="2304">4</div>
+        <div data-effect="copy" draggable="true" class="color5 item" data-idnum="2305">5</div>
+        <div data-effect="copy" draggable="true" class="color6 item" data-idnum="2306">6</div>
+        <div data-effect="copy" draggable="true" class="color7 item" data-idnum="2307">7</div>
+      </div>
+      <br>
+      PT
+      <div data-dropif="move" class="left">
+        <div data-effect="copy" draggable="true" class="color11 item" data-idnum="2311">11</div>
+        <div data-effect="copy" draggable="true" class="color12 item" data-idnum="2312">12</div>
+        <div data-effect="copy" draggable="true" class="color13 item" data-idnum="2313">13</div>
+        <div data-effect="copy" draggable="true" class="color14 item" data-idnum="2314">14</div>
+        <div data-effect="copy" draggable="true" class="color15 item" data-idnum="2315">15</div>
+        <div data-effect="copy" draggable="true" class="color16 item" data-idnum="2316">16</div>
+        <div data-effect="copy" draggable="true" class="color17 item" data-idnum="2317">17</div>
+        <div data-effect="copy" draggable="true" class="color18 item" data-idnum="2318">18</div>
+        <div data-effect="copy" draggable="true" class="color19 item" data-idnum="2319">19</div>
+        <div data-effect="copy" draggable="true" class="color20 item" data-idnum="2320" hidden>20</div>
+      </div>
+    </div>
+    <div class="right">
+    <div style="display: flex; justify-content: space-between;">
+      <div style="display: block;">
+        <input type="date" id="dateInput">
+        <button onclick="goUp()">上周</button>
+        <button onclick="goDown()">下周</button>
+      </div>
+      <div style="display: block;">
+
+        <!-- 模态对话框 -->
+        <div id="myModal" class="modal modal-sm"
+          style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="date" id="datePicker">
+            <button onclick="submitDate()">确认</button>
+          </div>
+        </div>
+        <!-- 按钮 -->
+        <button id="btnChange">插入指定周的数据</button>
+    </div>
+      
+
+        
+      </div>
+      <table>
+        <!-- 列的分组 -->
+        <colgroup>
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <td colspan="2"  data-time="date"> 
+              周一:
+              <span class="th_date" id="table_date"></span>
+              至周日:
+              <span class="th_date"></span>
+            </td>
+            <th>Mon</th>
+            <th>Thu</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th rowspan="5" class="span">上午 am</th>
+            <th>HS</th>
+            <td data-dropif="copy" data-pos="host" data-time="mon_am"></td>
+            <td data-dropif="copy" data-pos="host" data-time="tue_am"></td>
+            <td data-dropif="copy" data-pos="host" data-time="wed_am"></td>
+            <td data-dropif="copy" data-pos="host" data-time="thu_am"></td>
+            <td data-dropif="copy" data-pos="host" data-time="fri_am"></td>
+            <td data-dropif="copy" data-pos="host" data-time="sat_am"></td>
+            <td data-dropif="copy" data-pos="host" data-time="sun_am"></td>
+          </tr>
+          <tr>
+            <th>BT</th>
+            <td data-dropif="copy" data-pos="bartender" data-time="mon_am"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="tue_am"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="wed_am"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="thu_am"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="fri_am"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="sat_am"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="sun_am"></td>
+          </tr>
+          <tr>
+            <th>SV</th>
+            <td data-dropif="copy" data-pos="server" data-time="mon_am"></td>
+            <td data-dropif="copy" data-pos="server" data-time="tue_am"></td>
+            <td data-dropif="copy" data-pos="server" data-time="wed_am"></td>
+            <td data-dropif="copy" data-pos="server" data-time="thu_am"></td>
+            <td data-dropif="copy" data-pos="server" data-time="fri_am"></td>
+            <td data-dropif="copy" data-pos="server" data-time="sat_am"></td>
+            <td data-dropif="copy" data-pos="server" data-time="sun_am"></td>
+          </tr>
+          <tr>
+            <th>BS</th>
+            <td data-dropif="copy" data-pos="busser" data-time="mon_am"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="tue_am"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="wed_am"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="thu_am"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="fri_am"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="sat_am"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="sun_am"></td>
+          </tr>
+          <tr>
+            <th>TN</th>
+            <td data-dropif="copy" data-pos="trainee" data-time="mon_am"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="tue_am"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="wed_am"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="thu_am"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="fri_am"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="sat_am"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="sun_am"></td>
+          </tr>
+          <tr>
+            <td style="height: 5px;" colspan="9"></td>
+          </tr>
+          <tr>
+            <th rowspan="5" class="span">下午 pm</th>
+            <th>HS</th>
+            <td data-dropif="copy" data-pos="host" data-time="mon_pm"></td>
+            <td data-dropif="copy" data-pos="host" data-time="tue_pm"></td>
+            <td data-dropif="copy" data-pos="host" data-time="wed_pm"></td>
+            <td data-dropif="copy" data-pos="host" data-time="thu_pm"></td>
+            <td data-dropif="copy" data-pos="host" data-time="fri_pm"></td>
+            <td data-dropif="copy" data-pos="host" data-time="sat_pm"></td>
+            <td data-dropif="copy" data-pos="host" data-time="sun_pm"></td>
+          </tr>
+          <tr>
+            <th>BT</th>
+            <td data-dropif="copy" data-pos="bartender" data-time="mon_pm"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="tue_pm"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="wed_pm"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="thu_pm"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="fri_pm"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="sat_pm"></td>
+            <td data-dropif="copy" data-pos="bartender" data-time="sun_pm"></td>
+          </tr>
+          <tr>
+            <th>SV</th>
+            <td data-dropif="copy" data-pos="server" data-time="mon_pm"></td>
+            <td data-dropif="copy" data-pos="server" data-time="tue_pm"></td>
+            <td data-dropif="copy" data-pos="server" data-time="wed_pm"></td>
+            <td data-dropif="copy" data-pos="server" data-time="thu_pm"></td>
+            <td data-dropif="copy" data-pos="server" data-time="fri_pm"></td>
+            <td data-dropif="copy" data-pos="server" data-time="sat_pm"></td>
+            <td data-dropif="copy" data-pos="server" data-time="sun_pm"></td>
+          </tr>
+          <tr>
+            <th>BS</th>
+            <td data-dropif="copy" data-pos="busser" data-time="mon_pm"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="tue_pm"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="wed_pm"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="thu_pm"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="fri_pm"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="sat_pm"></td>
+            <td data-dropif="copy" data-pos="busser" data-time="sun_pm"></td>
+          </tr>
+          <tr>
+            <th>TN</th>
+            <td data-dropif="copy" data-pos="trainee" data-time="mon_pm"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="tue_pm"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="wed_pm"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="thu_pm"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="fri_pm"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="sat_pm"></td>
+            <td data-dropif="copy" data-pos="trainee" data-time="sun_pm"></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <input id="btn" type="button" value="update">
+    </div>
+  </div>
+
+  <!-- 路径for测试 -->
+
+  <!-- <script type="text/javascript" src="../public/javascripts/assets/serverNetAddress.js"></script>
+  <script type="text/javascript" src="../public/javascripts/dragTable/dateTrans_module.js"></script>
+  <script type="text/javascript" src="../public/javascripts/dragTable/dragblock_onload.js"></script>
+  <script type="text/javascript" src="../public/javascripts/dragTable/tableData_onload.js"></script>
+  <script type="text/javascript" src="../public/javascripts/dragTable/dragTable.js"></script>
+  <script type="text/javascript" src="../public/javascripts/dragTable/submitData.js"></script>
+   -->
+  <!--路径for服务器 -->
+
+  <script type="text/javascript" src="/javascripts/assets/serverNetAddress.js"></script>
+  <script type="text/javascript" src="/javascripts/assets/dateTrans_module.js"></script>
+
+  <script type="text/javascript" src="/javascripts/dragTable/dragblock_onload.js"></script>
+  <script type="text/javascript" src="/javascripts/dragTable/tableData_onload.js"></script>
+  <script type="text/javascript" src="/javascripts/dragTable/dragTable.js"></script>
+  <script type="text/javascript" src="/javascripts/dragTable/submitData.js"></script>
+</body>
+
+</html>
