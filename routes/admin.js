@@ -5,7 +5,7 @@ let url1 = path.join(__dirname, '../assets/js/dateTrans_module');
 let url2 = path.join(__dirname, '../mongodb/mg_model_module');
 
 //引入日期转化模块
-const dateTrans = require(url1);
+// const dateTrans = require(url1);
 //引入数据库操作文件
 // const WorkSchedule = require(url2).WorkSchedule;
 
